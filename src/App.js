@@ -79,7 +79,7 @@ const CONFIG = {
     bankName: "Dana",
     accountName: "Hotma Khoirul Amin",
     accountNumber: "0821-6694-3752",
-    qr: "/images/qr.jpg"
+    qr: "/images/qr.jpeg"
   }
 };
 
