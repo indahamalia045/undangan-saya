@@ -124,7 +124,6 @@ export default function WeddingInvitation() {
 
   return (
     <div className="min-h-screen bg-[#e9e3dc] font-[Inter] relative overflow-hidden">
-
       <FloatingPetals />
       {!isOpen ? (
         <CoverPage openInvitation={openInvitation} />
@@ -237,9 +236,16 @@ function MainContent({
 
   const handleWishSubmit = (e) => {
     e.preventDefault();
-    if (!wishName || !wishMessage) return;
-    setWishes([{ name: wishName, text: wishMessage }, ...wishes]);
+    if (!wishName.trim() || !wishMessage.trim()) return;
+
+    const newWish = {
+      name: wishName.trim(),
+      text: wishMessage.trim()
+    };
+
+    setWishes((prev) => [newWish, ...prev]);
     setWishSubmitted(true);
+
     setTimeout(() => {
       setWishSubmitted(false);
       setWishName('');
@@ -312,6 +318,16 @@ function MusicPlayer({ isPlaying, setIsPlaying }) {
 }
 
 function HeroSection() {
+  const buildGoogleCalendarUrl = () => {
+    const title = encodeURIComponent("Wedding of Hotma Khoirul Amin & Rina Karimah Harahap");
+    const details = encodeURIComponent("Undangan pernikahan Hotma Khoirul Amin & Rina Karimah Harahap");
+    const location = encodeURIComponent(CONFIG.wedding.resepsi.address);
+    const start = "20260530T100000";
+    const end = "20260531T130000";
+
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}`;
+  };
+
   return (
     <section className="relative min-h-screen px-4 py-10 flex items-center justify-center bg-[#f5efe9] overflow-hidden">
       <div className="w-full max-w-4xl grid md:grid-cols-2 gap-10 items-center">
@@ -331,6 +347,7 @@ function HeroSection() {
           >
             The Wedding Of
           </motion.p>
+
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -340,6 +357,7 @@ function HeroSection() {
           >
             {CONFIG.groom.nickname} &amp; {CONFIG.bride.nickname}
           </motion.h2>
+
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -349,15 +367,21 @@ function HeroSection() {
           >
             Sabtu-Minggu, 30-31 Mei 2026
           </motion.p>
+
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5, delay: 0.35 }}
           >
-            <button className="mt-8 bg-[#6b4f4f] text-white px-6 py-3 rounded-full shadow-md hover:bg-[#5a4343] transition font-[Inter]">
+            <a
+              href={buildGoogleCalendarUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center justify-center bg-[#6b4f4f] text-white px-6 py-3 rounded-full shadow-md hover:bg-[#5a4343] transition font-[Inter]"
+            >
               Save The Date
-            </button>
+            </a>
           </motion.div>
         </motion.div>
 
@@ -458,7 +482,7 @@ function LoveStorySection() {
       text: "Cinta Kami adalah cerita tentang dua jiwa yang bertemu di 01 Oktober 2025 tanpa disengaja. Tidak ada yang menyangka, sebuah pertemuan biasa justru menjadi awal dari kisah luar biasa."
     },
     {
-      title: "Second Chapter : Destiny", 
+      title: "Second Chapter : Destiny",
       text: "Dari Obrolan ringan hingga diskusi mendalam, kami menemukan bahwa kami saling melengkapi. Setiap langkah dalam perjalanan takdir ini, telah membawa kami lebih dekat satu sama lain."
     },
     {
@@ -474,12 +498,9 @@ function LoveStorySection() {
           <div className="w-full max-w-md mx-auto h-[260px] md:h-[340px] rounded-[28px] overflow-hidden shadow-xl mb-6">
             <img src={CONFIG.loveStoryPhoto} alt="Love Story" className="w-full h-full object-cover" />
           </div>
-          
-          {/* JUDUL LOVE STORY - FONT BARU */}
           <h3 className="text-4xl md:text-5xl text-[#6b4f4f] font-['Great_Vibes'] leading-none mb-2">
             Love Story
           </h3>
-          
           <p className="mt-3 text-[#8b7a6f] font-[Inter]">Perjalanan singkat kisah kami</p>
         </motion.div>
 
@@ -493,12 +514,9 @@ function LoveStorySection() {
               transition={{ duration: 0.6, delay: index * 0.08 }}
               className="text-center"
             >
-              {/* TITLE CHAPTER - FONT BARU */}
               <h4 className="text-3xl md:text-4xl text-[#6b4f4f] mb-6 font-['Great_Vibes'] leading-tight tracking-wide drop-shadow-sm">
                 {item.title}
               </h4>
-              
-              {/* TEXT CERITA - TETAP INTER */}
               <p className="text-[#7a5b5b] leading-relaxed font-[Inter] text-lg max-w-2xl mx-auto px-4">
                 {item.text}
               </p>
@@ -552,15 +570,12 @@ function EventDetailsSection() {
   return (
     <section className="py-20 px-4 bg-[#f5efe9]">
       <div className="max-w-4xl mx-auto">
-        
-        {/* JUDUL DETAIL ACARA - FONT BARU */}
         <h3 className="text-4xl md:text-5xl text-center mb-16 text-[#6b4f4f] font-['Great_Vibes'] leading-none drop-shadow-sm">
           Detail Acara
         </h3>
-        
+
         <div className="grid md:grid-cols-2 gap-8">
-          {/* ACAARA ADAT */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -596,8 +611,7 @@ function EventDetailsSection() {
             </div>
           </motion.div>
 
-          {/* RESEPSI */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -643,12 +657,10 @@ function GallerySection({ currentPhoto, setCurrentPhoto, showGallery, setShowGal
     <>
       <section className="py-20 bg-[#f5efe9] px-4">
         <div className="max-w-6xl mx-auto">
-          
-          {/* JUDUL GALERI - FONT BARU */}
           <h3 className="text-4xl md:text-5xl text-center mb-12 text-[#6b4f4f] font-['Great_Vibes'] leading-none drop-shadow-sm">
             Galeri Foto
           </h3>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {CONFIG.photos.map((photo, index) => (
               <motion.div
@@ -663,9 +675,9 @@ function GallerySection({ currentPhoto, setCurrentPhoto, showGallery, setShowGal
                 }}
                 className="aspect-square overflow-hidden rounded-xl cursor-pointer hover:opacity-90 hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl group"
               >
-                <img 
-                  src={photo} 
-                  alt={`Foto ${index + 1}`} 
+                <img
+                  src={photo}
+                  alt={`Foto ${index + 1}`}
                   className="w-full h-full object-cover group-hover:brightness-110 transition-all duration-300"
                 />
               </motion.div>
@@ -682,28 +694,28 @@ function GallerySection({ currentPhoto, setCurrentPhoto, showGallery, setShowGal
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
           >
-            <button 
-              onClick={() => setShowGallery(false)} 
+            <button
+              onClick={() => setShowGallery(false)}
               className="absolute top-6 right-6 text-white/90 hover:text-white transition-all p-2 rounded-full bg-black/30 backdrop-blur-sm"
             >
               <X className="w-8 h-8" />
             </button>
-            
-            <button 
-              onClick={() => setCurrentPhoto((currentPhoto - 1 + CONFIG.photos.length) % CONFIG.photos.length)} 
+
+            <button
+              onClick={() => setCurrentPhoto((currentPhoto - 1 + CONFIG.photos.length) % CONFIG.photos.length)}
               className="absolute left-6 text-white/90 hover:text-white transition-all p-3 rounded-full bg-black/30 backdrop-blur-sm"
             >
               <ChevronLeft className="w-10 h-10" />
             </button>
-            
-            <img 
-              src={CONFIG.photos[currentPhoto]} 
-              alt="Foto Gallery" 
+
+            <img
+              src={CONFIG.photos[currentPhoto]}
+              alt="Foto Gallery"
               className="max-w-[95vw] max-h-[90vh] object-contain rounded-2xl shadow-2xl"
             />
-            
-            <button 
-              onClick={() => setCurrentPhoto((currentPhoto + 1) % CONFIG.photos.length)} 
+
+            <button
+              onClick={() => setCurrentPhoto((currentPhoto + 1) % CONFIG.photos.length)}
               className="absolute right-6 text-white/90 hover:text-white transition-all p-3 rounded-full bg-black/30 backdrop-blur-sm"
             >
               <ChevronRight className="w-10 h-10" />
@@ -719,9 +731,7 @@ function MapSection() {
   return (
     <section className="py-20 px-4 bg-[#f5efe9]">
       <div className="max-w-4xl mx-auto">
-        
-        {/* JUDUL LOKASI - FONT BARU */}
-        <motion.h3 
+        <motion.h3
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -730,8 +740,7 @@ function MapSection() {
         >
           Lokasi Acara
         </motion.h3>
-        
-        {/* GOOGLE MAPS */}
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -751,9 +760,8 @@ function MapSection() {
             className="w-full"
           />
         </motion.div>
-        
-        {/* BUTTON GOOGLE MAPS */}
-        <motion.div 
+
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -786,19 +794,19 @@ function GiftSection({ copied, copyAccount }) {
         </p>
 
         <div className="mt-10 bg-[#fffaf6] rounded-2xl shadow-lg p-8 border border-[#e2c7b8]">
-          <div className="flex items-center justify-center mb-3">
-  <img
-    src="/images/dana.png"
-    alt="Logo DANA"
-    className="w-24 h-24 object-contain"
-  />
-</div>
+          <div className="flex items-center justify-center mb-4">
+            <img
+              src="/images/dana.png"
+              alt="Logo DANA"
+              className="w-32 h-32 object-contain"
+            />
+          </div>
 
           <p className="text-2xl text-[#6b4f4f] font-semibold mt-2 font-['Cormorant_Garamond']">
-            Hotma Khoirul Amin
+            {CONFIG.gift.accountName}
           </p>
           <p className="text-xl text-[#7a5b5b] mt-1 font-[Inter]">
-            081234567890
+            {CONFIG.gift.accountNumber}
           </p>
 
           <button
@@ -808,6 +816,12 @@ function GiftSection({ copied, copyAccount }) {
             <Copy className="w-4 h-4" />
             {copied ? 'Nomor Disalin' : 'Salin Nomor'}
           </button>
+
+          <div className="mt-8">
+            <div className="w-44 h-44 mx-auto rounded-2xl overflow-hidden border-4 border-white shadow-md">
+              <img src={CONFIG.gift.qr} alt="QR Gift" className="w-full h-full object-cover" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
