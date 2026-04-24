@@ -34,7 +34,7 @@ const CONFIG = {
     nickname: "Amin",
     instagram: "@hotmakhoirull",
     father: "Bapak H. Sabilillah Siregar S.Pd",
-    mother: "Ibu Hj. Ummi Kalsum Harahap S.SOS"
+    mother: "Ibu Hj. Ummi Kalsum Harahap S.Sos"
   },
   wedding: {
     date: "2026-05-30",
@@ -76,9 +76,9 @@ const CONFIG = {
     source: "QS. Ar-Rum: 21"
   },
   gift: {
-    bankName: "Bank BRI",
+    bankName: "Dana",
     accountName: "Hotma Khoirul Amin",
-    accountNumber: "123456789012",
+    accountNumber: "0821-6694-3752",
     qr: "/images/qr.jpg"
   }
 };
@@ -124,10 +124,7 @@ export default function WeddingInvitation() {
 
   return (
     <div className="min-h-screen bg-[#e9e3dc] font-[Inter] relative overflow-hidden">
-      <img src="/images/bunga.jpg" alt="ornament flower top left" className="absolute top-0 left-0 w-24 md:w-44 z-0 pointer-events-none opacity-80" />
-      <img src="/images/bunga2.jpg" alt="ornament flower top right" className="absolute top-0 right-0 w-24 md:w-44 z-0 pointer-events-none opacity-80" />
-      <img src="/images/bunga3.jpg" alt="ornament flower bottom left" className="absolute bottom-0 left-0 w-24 md:w-44 z-0 pointer-events-none opacity-80" />
-      <img src="/images/bunga4.jpg" alt="ornament flower bottom right" className="absolute bottom-0 right-0 w-24 md:w-44 z-0 pointer-events-none opacity-80" />
+
       <FloatingPetals />
       {!isOpen ? (
         <CoverPage openInvitation={openInvitation} />
@@ -457,16 +454,16 @@ function BrideGroomSection() {
 function LoveStorySection() {
   const stories = [
     {
-      title: "When Worlds Collide",
-      text: "Tidak ada yang kebetulan di dunia ini. Semua sudah tersusun dengan sangat rapi, oleh sang Maha Kuasa, kita tidak bisa memilih kepada siapa kita akan jatuh cinta. Kami bertemu pertama kalinya pada tahun 2024."
+      title: "First Chapter : Encounter",
+      text: "Cinta Kami adalah cerita tentang dua jiwa yang bertemu di 01 Oktober 2025 tanpa disengaja. Tidak ada yang menyangka, sebuah pertemuan biasa justru menjadi awal dari kisah luar biasa."
     },
     {
-      title: "We Found The Rhythm",
-      text: "Katanya cinta dapat tumbuh dengan kebersamaan, seiring berjalannya waktu, pertemuan itu berkembang menjadi kisah yang kami rawat perlahan. Kami menjalin hubungan yang dipenuhi proses belajar dan bertumbuh tentang kepercayaan, pengertian dan bagaimana saling menjaga. Bukan perjalanan yang selalu mudah, tapi selalu kami perjuangkan dengan keyakinan dan doa, bahwa hati yang ditujukan untuk menetap akan selalu menemukan jalannya untuk bertahan."
+      title: "Second Chapter : Destiny", 
+      text: "Dari Obrolan ringan hingga diskusi mendalam, kami menemukan bahwa kami saling melengkapi. Setiap langkah dalam perjalanan takdir ini, telah membawa kami lebih dekat satu sama lain."
     },
     {
-      title: "A Promise Carved in Time",
-      text: "Setelah saling mengenal dan belajar tentang arti sabar dan pengertian, ia datang membawa niat tulus bersama restu kedua orang tuanya. Hari itu menjadi saksi bisu, ketika dua hati menyatukan harapan dalam ridha keluarga dan bimbingan-Nya."
+      title: "Final Chapter : Forever Starts Here",
+      text: "Dengan penuh rasa syukur, kami ingin merayakan cinta kami di hari yang istimewa di Tahun 2026 ini.Cinta yang sakral, cinta yang bermuara pada cinta-Nya."
     }
   ];
 
@@ -477,7 +474,12 @@ function LoveStorySection() {
           <div className="w-full max-w-md mx-auto h-[260px] md:h-[340px] rounded-[28px] overflow-hidden shadow-xl mb-6">
             <img src={CONFIG.loveStoryPhoto} alt="Love Story" className="w-full h-full object-cover" />
           </div>
-          <h3 className="text-3xl md:text-4xl text-[#6b4f4f] font-['Cormorant_Garamond']">Love Story</h3>
+          
+          {/* JUDUL LOVE STORY - FONT BARU */}
+          <h3 className="text-4xl md:text-5xl text-[#6b4f4f] font-['Great_Vibes'] leading-none mb-2">
+            Love Story
+          </h3>
+          
           <p className="mt-3 text-[#8b7a6f] font-[Inter]">Perjalanan singkat kisah kami</p>
         </motion.div>
 
@@ -491,8 +493,15 @@ function LoveStorySection() {
               transition={{ duration: 0.6, delay: index * 0.08 }}
               className="text-center"
             >
-              <h4 className="text-2xl text-[#6b4f4f] mb-3 font-['Cormorant_Garamond']">{item.title}</h4>
-              <p className="text-[#7a5b5b] leading-relaxed font-[Inter]">{item.text}</p>
+              {/* TITLE CHAPTER - FONT BARU */}
+              <h4 className="text-3xl md:text-4xl text-[#6b4f4f] mb-6 font-['Great_Vibes'] leading-tight tracking-wide drop-shadow-sm">
+                {item.title}
+              </h4>
+              
+              {/* TEXT CERITA - TETAP INTER */}
+              <p className="text-[#7a5b5b] leading-relaxed font-[Inter] text-lg max-w-2xl mx-auto px-4">
+                {item.text}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -543,63 +552,86 @@ function EventDetailsSection() {
   return (
     <section className="py-20 px-4 bg-[#f5efe9]">
       <div className="max-w-4xl mx-auto">
-        <h3 className="text-3xl md:text-4xl text-center mb-12 text-[#6b4f4f] font-['Cormorant_Garamond']">Detail Acara</h3>
+        
+        {/* JUDUL DETAIL ACARA - FONT BARU */}
+        <h3 className="text-4xl md:text-5xl text-center mb-16 text-[#6b4f4f] font-['Great_Vibes'] leading-none drop-shadow-sm">
+          Detail Acara
+        </h3>
+        
         <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-[#fffaf6] rounded-xl shadow-lg p-8 border-t-4 border-[#6b4f4f]">
-            <h4 className="text-2xl mb-4 text-[#6b4f4f] font-semibold font-['Cormorant_Garamond']">Acara Adat</h4>
-            <div className="space-y-3 text-[#7a5b5b] font-[Inter]">
-              <div className="flex items-start gap-3">
-                <Calendar className="w-5 h-5 text-[#6b4f4f] mt-1" />
+          {/* ACAARA ADAT */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-[#fffaf6] rounded-2xl shadow-xl p-8 border-t-4 border-[#6b4f4f] hover:shadow-2xl transition-all duration-300"
+          >
+            <h4 className="text-2xl md:text-3xl mb-6 text-[#6b4f4f] font-['Cormorant_Garamond'] font-semibold tracking-tight">
+              Acara Adat
+            </h4>
+            <div className="space-y-4 text-[#7a5b5b] font-[Inter]">
+              <div className="flex items-start gap-4 p-3 bg-white/50 rounded-xl">
+                <Calendar className="w-6 h-6 text-[#6b4f4f] mt-1 flex-shrink-0" />
                 <div>
-                  <p className="font-semibold text-[#6b4f4f]">Tanggal</p>
-                  <p>{CONFIG.wedding.date}</p>
+                  <p className="font-semibold text-[#6b4f4f] text-sm tracking-wide">Tanggal</p>
+                  <p className="text-lg font-medium">{CONFIG.wedding.date}</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-[#6b4f4f] mt-1" />
+              <div className="flex items-start gap-4 p-3 bg-white/50 rounded-xl">
+                <Clock className="w-6 h-6 text-[#6b4f4f] mt-1 flex-shrink-0" />
                 <div>
-                  <p className="font-semibold text-[#6b4f4f]">Waktu</p>
-                  <p>{CONFIG.wedding.akad.time}</p>
+                  <p className="font-semibold text-[#6b4f4f] text-sm tracking-wide">Waktu</p>
+                  <p className="text-lg font-medium">{CONFIG.wedding.akad.time}</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[#6b4f4f] mt-1" />
+              <div className="flex items-start gap-4 p-3 bg-white/50 rounded-xl">
+                <MapPin className="w-6 h-6 text-[#6b4f4f] mt-1 flex-shrink-0" />
                 <div>
-                  <p className="font-semibold text-[#6b4f4f]">Tempat</p>
-                  <p>{CONFIG.wedding.akad.venue}</p>
-                  <p className="text-sm text-[#8b7a6f]">{CONFIG.wedding.akad.address}</p>
+                  <p className="font-semibold text-[#6b4f4f] text-sm tracking-wide">Tempat</p>
+                  <p className="font-medium">{CONFIG.wedding.akad.venue}</p>
+                  <p className="text-sm text-[#8b7a6f] mt-1 leading-relaxed">{CONFIG.wedding.akad.address}</p>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-[#6b4f4f]">
-            <h4 className="text-2xl mb-4 text-[#6b4f4f] font-semibold font-['Cormorant_Garamond']">Resepsi</h4>
-            <div className="space-y-3 text-[#7a5b5b] font-[Inter]">
-              <div className="flex items-start gap-3">
-                <Calendar className="w-5 h-5 text-[#6b4f4f] mt-1" />
+          {/* RESEPSI */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-[#6b4f4f] hover:shadow-2xl transition-all duration-300"
+          >
+            <h4 className="text-2xl md:text-3xl mb-6 text-[#6b4f4f] font-['Cormorant_Garamond'] font-semibold tracking-tight">
+              Resepsi
+            </h4>
+            <div className="space-y-4 text-[#7a5b5b] font-[Inter]">
+              <div className="flex items-start gap-4 p-3 bg-white/50 rounded-xl">
+                <Calendar className="w-6 h-6 text-[#6b4f4f] mt-1 flex-shrink-0" />
                 <div>
-                  <p className="font-semibold text-[#6b4f4f]">Tanggal</p>
-                  <p>{CONFIG.wedding.date1}</p>
+                  <p className="font-semibold text-[#6b4f4f] text-sm tracking-wide">Tanggal</p>
+                  <p className="text-lg font-medium">{CONFIG.wedding.date1}</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-[#6b4f4f] mt-1" />
+              <div className="flex items-start gap-4 p-3 bg-white/50 rounded-xl">
+                <Clock className="w-6 h-6 text-[#6b4f4f] mt-1 flex-shrink-0" />
                 <div>
-                  <p className="font-semibold text-[#6b4f4f]">Waktu</p>
-                  <p>{CONFIG.wedding.resepsi.time}</p>
+                  <p className="font-semibold text-[#6b4f4f] text-sm tracking-wide">Waktu</p>
+                  <p className="text-lg font-medium">{CONFIG.wedding.resepsi.time}</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[#6b4f4f] mt-1" />
+              <div className="flex items-start gap-4 p-3 bg-white/50 rounded-xl">
+                <MapPin className="w-6 h-6 text-[#6b4f4f] mt-1 flex-shrink-0" />
                 <div>
-                  <p className="font-semibold text-[#6b4f4f]">Tempat</p>
-                  <p>{CONFIG.wedding.resepsi.venue}</p>
-                  <p className="text-sm text-[#8b7a6f]">{CONFIG.wedding.resepsi.address}</p>
+                  <p className="font-semibold text-[#6b4f4f] text-sm tracking-wide">Tempat</p>
+                  <p className="font-medium">{CONFIG.wedding.resepsi.venue}</p>
+                  <p className="text-sm text-[#8b7a6f] mt-1 leading-relaxed">{CONFIG.wedding.resepsi.address}</p>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -611,8 +643,13 @@ function GallerySection({ currentPhoto, setCurrentPhoto, showGallery, setShowGal
     <>
       <section className="py-20 bg-[#f5efe9] px-4">
         <div className="max-w-6xl mx-auto">
-          <h3 className="text-3xl md:text-4xl text-center mb-12 text-[#6b4f4f] font-['Cormorant_Garamond']">Galeri Foto</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          
+          {/* JUDUL GALERI - FONT BARU */}
+          <h3 className="text-4xl md:text-5xl text-center mb-12 text-[#6b4f4f] font-['Great_Vibes'] leading-none drop-shadow-sm">
+            Galeri Foto
+          </h3>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {CONFIG.photos.map((photo, index) => (
               <motion.div
                 key={index}
@@ -624,9 +661,13 @@ function GallerySection({ currentPhoto, setCurrentPhoto, showGallery, setShowGal
                   setCurrentPhoto(index);
                   setShowGallery(true);
                 }}
-                className="aspect-square overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity shadow-md"
+                className="aspect-square overflow-hidden rounded-xl cursor-pointer hover:opacity-90 hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl group"
               >
-                <img src={photo} alt={`Gallery ${index + 1}`} className="w-full h-full object-cover" />
+                <img 
+                  src={photo} 
+                  alt={`Foto ${index + 1}`} 
+                  className="w-full h-full object-cover group-hover:brightness-110 transition-all duration-300"
+                />
               </motion.div>
             ))}
           </div>
@@ -639,17 +680,33 @@ function GallerySection({ currentPhoto, setCurrentPhoto, showGallery, setShowGal
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
+            className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
           >
-            <button onClick={() => setShowGallery(false)} className="absolute top-4 right-4 text-white hover:text-[#e9e3dc] transition-colors">
+            <button 
+              onClick={() => setShowGallery(false)} 
+              className="absolute top-6 right-6 text-white/90 hover:text-white transition-all p-2 rounded-full bg-black/30 backdrop-blur-sm"
+            >
               <X className="w-8 h-8" />
             </button>
-            <button onClick={() => setCurrentPhoto((currentPhoto - 1 + CONFIG.photos.length) % CONFIG.photos.length)} className="absolute left-4 text-white hover:text-[#e9e3dc] transition-colors">
-              <ChevronLeft className="w-12 h-12" />
+            
+            <button 
+              onClick={() => setCurrentPhoto((currentPhoto - 1 + CONFIG.photos.length) % CONFIG.photos.length)} 
+              className="absolute left-6 text-white/90 hover:text-white transition-all p-3 rounded-full bg-black/30 backdrop-blur-sm"
+            >
+              <ChevronLeft className="w-10 h-10" />
             </button>
-            <img src={CONFIG.photos[currentPhoto]} alt="Gallery" className="max-w-[92vw] max-h-[80vh] object-contain" />
-            <button onClick={() => setCurrentPhoto((currentPhoto + 1) % CONFIG.photos.length)} className="absolute right-4 text-white hover:text-[#e9e3dc] transition-colors">
-              <ChevronRight className="w-12 h-12" />
+            
+            <img 
+              src={CONFIG.photos[currentPhoto]} 
+              alt="Foto Gallery" 
+              className="max-w-[95vw] max-h-[90vh] object-contain rounded-2xl shadow-2xl"
+            />
+            
+            <button 
+              onClick={() => setCurrentPhoto((currentPhoto + 1) % CONFIG.photos.length)} 
+              className="absolute right-6 text-white/90 hover:text-white transition-all p-3 rounded-full bg-black/30 backdrop-blur-sm"
+            >
+              <ChevronRight className="w-10 h-10" />
             </button>
           </motion.div>
         )}
@@ -662,29 +719,57 @@ function MapSection() {
   return (
     <section className="py-20 px-4 bg-[#f5efe9]">
       <div className="max-w-4xl mx-auto">
-        <h3 className="text-3xl md:text-4xl text-center mb-12 text-[#6b4f4f] font-['Cormorant_Garamond']">Lokasi Acara</h3>
-        <div className="rounded-xl overflow-hidden shadow-xl">
+        
+        {/* JUDUL LOKASI - FONT BARU */}
+        <motion.h3 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-4xl md:text-5xl text-center mb-16 text-[#6b4f4f] font-['Great_Vibes'] leading-none drop-shadow-sm"
+        >
+          Lokasi Acara
+        </motion.h3>
+        
+        {/* GOOGLE MAPS */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white/50"
+        >
           <iframe
             title="Lokasi Acara Pernikahan"
             src={CONFIG.mapsLink}
             width="100%"
-            height="400"
+            height="450"
             style={{ border: 0 }}
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
+            className="w-full"
           />
-        </div>
-        <div className="text-center mt-6">
+        </motion.div>
+        
+        {/* BUTTON GOOGLE MAPS */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="text-center mt-10"
+        >
           <a
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONFIG.wedding.resepsi.address)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-[#6b4f4f] text-white px-8 py-3 rounded-full hover:bg-[#5a4343] transition-colors font-[Inter]"
+            className="inline-flex items-center gap-2 bg-[#6b4f4f] text-white px-8 py-4 rounded-full hover:bg-[#5a4343] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] font-[Inter] font-semibold text-lg"
           >
+            <MapPin className="w-5 h-5" />
             Buka di Google Maps
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -713,11 +798,7 @@ function GiftSection({ copied, copyAccount }) {
             {copied ? 'Nomor Disalin' : 'Salin Nomor'}
           </button>
 
-          <div className="mt-8">
-            <div className="w-44 h-44 mx-auto rounded-2xl overflow-hidden border-4 border-white shadow-md">
-              <img src={CONFIG.gift.qr} alt="QR Gift" className="w-full h-full object-cover" />
-            </div>
-          </div>
+        
         </div>
       </div>
     </section>
