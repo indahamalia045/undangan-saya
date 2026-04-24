@@ -786,9 +786,20 @@ function GiftSection({ copied, copyAccount }) {
         </p>
 
         <div className="mt-10 bg-[#fffaf6] rounded-2xl shadow-lg p-8 border border-[#e2c7b8]">
-          <p className="text-[#8b7a6f] font-[Inter]">{CONFIG.gift.bankName}</p>
-          <p className="text-2xl text-[#6b4f4f] font-semibold mt-2 font-['Cormorant_Garamond']">{CONFIG.gift.accountName}</p>
-          <p className="text-xl text-[#7a5b5b] mt-1 font-[Inter]">{CONFIG.gift.accountNumber}</p>
+          <div className="flex items-center justify-center mb-3">
+  <img
+    src="/images/dana.png"
+    alt="Logo DANA"
+    className="w-24 h-24 object-contain"
+  />
+</div>
+
+          <p className="text-2xl text-[#6b4f4f] font-semibold mt-2 font-['Cormorant_Garamond']">
+            Hotma Khoirul Amin
+          </p>
+          <p className="text-xl text-[#7a5b5b] mt-1 font-[Inter]">
+            081234567890
+          </p>
 
           <button
             onClick={copyAccount}
@@ -797,8 +808,6 @@ function GiftSection({ copied, copyAccount }) {
             <Copy className="w-4 h-4" />
             {copied ? 'Nomor Disalin' : 'Salin Nomor'}
           </button>
-
-        
         </div>
       </div>
     </section>
