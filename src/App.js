@@ -39,6 +39,7 @@ const CONFIG = {
   wedding: {
     date: "2026-05-30",
     date1: "2026-05-31",
+    location: "1.4071923625971186,99.29793375046012",
     akad: {
       time: "08:00 WIB - Selesai",
       venue: "Rumah Mempelai Pria",
@@ -50,7 +51,7 @@ const CONFIG = {
       address: "Gunung Hasahatan Kecamatan Padangsidimpuan Batunadua Kota Padangsidimpuan"
     }
   },
-  mapsLink: "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d249.28844044258796!2d99.29786488441009!3d1.4071944663445939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1776677636164!5m2!1sid!2sid",
+  mapsLink: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d249.2903563445872!2d99.29793375046012!3d1.4071923625971186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1sid!2sid!4v1777175845652!5m2!1sid!2sid",
   musicUrl: "/music/onango.mp3",
   photos: [
     "/images/1.jpeg",
@@ -269,17 +270,7 @@ function MainContent({
       <RevealSection className="bg-[#f5efe9]">
         <GiftSection copied={copied} copyAccount={copyAccount} />
       </RevealSection>
-      <RevealSection>
-        <WishesSection
-          wishName={wishName}
-          setWishName={setWishName}
-          wishMessage={wishMessage}
-          setWishMessage={setWishMessage}
-          wishSubmitted={wishSubmitted}
-          handleWishSubmit={handleWishSubmit}
-          wishes={wishes}
-        />
-      </RevealSection>
+      
       <RevealSection className="bg-[#f5efe9]">
         <RSVPSection
           rsvpName={rsvpName}
@@ -422,52 +413,189 @@ function BrideGroomSection() {
     show: { opacity: 1, x: 0 }
   };
 
+  const InstagramIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      className="w-8 h-8"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="instagramGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#f58529" />
+          <stop offset="35%" stopColor="#dd2a7b" />
+          <stop offset="70%" stopColor="#8134af" />
+          <stop offset="100%" stopColor="#515bd4" />
+        </linearGradient>
+      </defs>
+      <path
+        fill="url(#instagramGradient)"
+        d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 1.5A4 4 0 0 0 3.5 7.5v9a4 4 0 0 0 4 4h9a4 4 0 0 0 4-4v-9a4 4 0 0 0-4-4h-9Zm4.5 3.5a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.25-1.8a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1Z"
+      />
+    </svg>
+  );
+
   return (
     <section className="py-20 px-4 bg-[#f5efe9]">
       <div className="max-w-3xl mx-auto space-y-20">
         <div className="text-center">
-          <motion.div variants={item} initial="hiddenRight" whileInView="show" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8, ease: "easeOut" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="text-center mb-8 px-4"
+          >
+            <p className="text-[#7a5b5b] text-xl md:text-2xl leading-relaxed font-['Cormorant_Garamond'] italic">
+              Assalamualaikum Wr. Wb.
+            </p>
+            <p className="text-[#7a5b5b] text-base md:text-lg leading-relaxed font-[Inter] mt-3">
+              Dengan memohon Rahmat &amp; Ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan putra-putri kami:
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={item}
+            initial="hiddenRight"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <div className="w-64 h-64 mx-auto mb-6 rounded-full overflow-hidden border-8 border-[#e2c7b8] shadow-xl">
               <img src={CONFIG.photos[3]} alt={CONFIG.groom.nickname} className="w-full h-full object-cover" />
             </div>
           </motion.div>
-          <motion.h3 variants={item} initial="hiddenRight" whileInView="show" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }} className="text-3xl mb-2 text-[#6b4f4f] font-['Cormorant_Garamond']">
+
+          <motion.h3
+            variants={item}
+            initial="hiddenRight"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            className="text-3xl mb-2 text-[#6b4f4f] font-['Cormorant_Garamond']"
+          >
             {CONFIG.groom.fullName}
           </motion.h3>
-          <motion.p variants={item} initial="hiddenRight" whileInView="show" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }} className="text-[#8b7a6f] mb-2 font-[Inter]">
+
+          <motion.p
+            variants={item}
+            initial="hiddenRight"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            className="text-[#8b7a6f] mb-2 font-[Inter]"
+          >
             Putra dari:
           </motion.p>
-          <motion.p variants={item} initial="hiddenRight" whileInView="show" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }} className="text-[#7a5b5b] font-[Inter]">
+
+          <motion.p
+            variants={item}
+            initial="hiddenRight"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+            className="text-[#7a5b5b] font-[Inter]"
+          >
             {CONFIG.groom.father}
           </motion.p>
-          <motion.p variants={item} initial="hiddenRight" whileInView="show" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }} className="text-[#7a5b5b] mb-4 font-[Inter]">
+
+          <motion.p
+            variants={item}
+            initial="hiddenRight"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+            className="text-[#7a5b5b] mb-4 font-[Inter]"
+          >
             {CONFIG.groom.mother}
           </motion.p>
-          <motion.a variants={item} initial="hiddenRight" whileInView="show" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }} href={`https://instagram.com/${CONFIG.groom.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="text-[#6b4f4f] hover:text-[#5a4343] font-[Inter]">
-            {CONFIG.groom.instagram}
+
+          <motion.a
+            variants={item}
+            initial="hiddenRight"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            href={`https://instagram.com/${CONFIG.groom.instagram.replace('@', '')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center text-[#6b4f4f] hover:scale-110 transition-transform duration-300"
+            aria-label={`Instagram ${CONFIG.groom.fullName}`}
+          >
+            <InstagramIcon />
           </motion.a>
         </div>
 
         <div className="text-center">
-          <motion.div variants={item} initial="hiddenLeft" whileInView="show" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8, ease: "easeOut" }}>
+          <motion.div
+            variants={item}
+            initial="hiddenLeft"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <div className="w-64 h-64 mx-auto mb-6 rounded-full overflow-hidden border-8 border-[#e2c7b8] shadow-xl">
               <img src={CONFIG.photos[1]} alt={CONFIG.bride.nickname} className="w-full h-full object-cover" />
             </div>
           </motion.div>
-          <motion.h3 variants={item} initial="hiddenLeft" whileInView="show" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }} className="text-3xl mb-2 text-[#6b4f4f] font-['Cormorant_Garamond']">
+
+          <motion.h3
+            variants={item}
+            initial="hiddenLeft"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            className="text-3xl mb-2 text-[#6b4f4f] font-['Cormorant_Garamond']"
+          >
             {CONFIG.bride.fullName}
           </motion.h3>
-          <motion.p variants={item} initial="hiddenLeft" whileInView="show" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }} className="text-[#8b7a6f] mb-2 font-[Inter]">
+
+          <motion.p
+            variants={item}
+            initial="hiddenLeft"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            className="text-[#8b7a6f] mb-2 font-[Inter]"
+          >
             Putri dari:
           </motion.p>
-          <motion.p variants={item} initial="hiddenLeft" whileInView="show" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }} className="text-[#7a5b5b] font-[Inter]">
+
+          <motion.p
+            variants={item}
+            initial="hiddenLeft"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+            className="text-[#7a5b5b] font-[Inter]"
+          >
             {CONFIG.bride.father}
           </motion.p>
-          <motion.p variants={item} initial="hiddenLeft" whileInView="show" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }} className="text-[#7a5b5b] mb-4 font-[Inter]">
+
+          <motion.p
+            variants={item}
+            initial="hiddenLeft"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+            className="text-[#7a5b5b] mb-4 font-[Inter]"
+          >
             {CONFIG.bride.mother}
           </motion.p>
-          <motion.a variants={item} initial="hiddenLeft" whileInView="show" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }} href={`https://instagram.com/${CONFIG.bride.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="text-[#6b4f4f] hover:text-[#5a4343] font-[Inter]">
-            {CONFIG.bride.instagram}
+
+          <motion.a
+            variants={item}
+            initial="hiddenLeft"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            href={`https://instagram.com/${CONFIG.bride.instagram.replace('@', '')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center text-[#6b4f4f] hover:scale-110 transition-transform duration-300"
+            aria-label={`Instagram ${CONFIG.bride.fullName}`}
+          >
+            <InstagramIcon />
           </motion.a>
         </div>
       </div>
@@ -769,7 +897,7 @@ function MapSection() {
           className="text-center mt-10"
         >
           <a
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONFIG.wedding.resepsi.address)}`}
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONFIG.wedding.location)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#6b4f4f] text-white px-8 py-4 rounded-full hover:bg-[#5a4343] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] font-[Inter] font-semibold text-lg"
@@ -782,6 +910,7 @@ function MapSection() {
     </section>
   );
 }
+
 
 function GiftSection({ copied, copyAccount }) {
   return (
@@ -828,59 +957,7 @@ function GiftSection({ copied, copyAccount }) {
   );
 }
 
-function WishesSection({
-  wishName,
-  setWishName,
-  wishMessage,
-  setWishMessage,
-  wishSubmitted,
-  handleWishSubmit,
-  wishes
-}) {
-  return (
-    <section className="py-20 bg-[#f5efe9] px-4">
-      <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-12">
-          <MessageCircleHeart className="w-10 h-10 mx-auto mb-4 text-[#6b4f4f]" />
-          <h3 className="text-3xl md:text-4xl text-[#6b4f4f] font-['Cormorant_Garamond']">Ucapan & Doa</h3>
-          <p className="mt-3 text-[#8b7a6f] font-[Inter]">Tinggalkan ucapan untuk kedua mempelai</p>
-        </div>
 
-        <form onSubmit={handleWishSubmit} className="bg-white rounded-2xl shadow-lg p-8 space-y-5">
-          <input
-            type="text"
-            value={wishName}
-            onChange={(e) => setWishName(e.target.value)}
-            placeholder="Nama Anda"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#6b4f4f] font-[Inter]"
-            required
-          />
-          <textarea
-            value={wishMessage}
-            onChange={(e) => setWishMessage(e.target.value)}
-            placeholder="Tulis doa dan ucapan"
-            rows="4"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#6b4f4f] font-[Inter]"
-            required
-          />
-          <button type="submit" className="w-full bg-[#6b4f4f] text-white py-3 rounded-lg hover:bg-[#5a4343] transition-colors font-semibold font-[Inter]">
-            Kirim Ucapan
-          </button>
-          {wishSubmitted && <p className="text-green-600 text-center font-[Inter]">Ucapan berhasil dikirim.</p>}
-        </form>
-
-        <div className="mt-10 space-y-4">
-          {wishes.map((wish, i) => (
-            <div key={i} className="bg-[#fffaf6] rounded-2xl shadow-md p-5 border border-[#e2c7b8]">
-              <p className="text-[#6b4f4f] font-semibold font-['Cormorant_Garamond'] text-xl">{wish.name}</p>
-              <p className="text-[#7a5b5b] mt-2 leading-relaxed font-[Inter]">{wish.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function RSVPSection({
   rsvpName,
@@ -969,8 +1046,8 @@ function FooterSection() {
           year: 'numeric'
         })}
       </p>
-      <p className="text-sm text-gray-400 mt-6 font-[Inter]">Made with ❤️ for our special day</p>
-      <p className="text-sm text-gray-400 mt-2 font-[Inter]">by IndahLia</p>
+      <p className="text-sm text-gray-400 mt-6 font-[Inter]">Made with ❤️ by IndahLia </p>
+      
     </footer>
   );
 }
