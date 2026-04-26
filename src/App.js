@@ -12,7 +12,6 @@ import {
   Send,
   Copy,
   Gift,
-  MessageCircleHeart
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -105,10 +104,7 @@ export default function WeddingInvitation() {
   const [currentPhoto, setCurrentPhoto] = useState(0);
   const [showGallery, setShowGallery] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [wishes, setWishes] = useState([
-    { name: "Aulia", text: "Selamat menempuh hidup baru. Semoga sakinah, mawaddah, warahmah." },
-    { name: "Rizki", text: "Semoga lancar sampai hari H dan rumah tangganya penuh berkah." }
-  ]);
+  
 
   const openInvitation = () => {
     setIsOpen(true);
@@ -138,8 +134,6 @@ export default function WeddingInvitation() {
           setShowGallery={setShowGallery}
           copied={copied}
           copyAccount={copyAccount}
-          wishes={wishes}
-          setWishes={setWishes}
         />
       )}
     </div>
@@ -212,17 +206,13 @@ function MainContent({
   setShowGallery,
   copied,
   copyAccount,
-  wishes,
-  setWishes
 }) {
   const [rsvpName, setRsvpName] = useState('');
   const [attendance, setAttendance] = useState('');
   const [rsvpMessage, setRsvpMessage] = useState('');
   const [rsvpSubmitted, setRsvpSubmitted] = useState(false);
 
-  const [wishName, setWishName] = useState('');
-  const [wishMessage, setWishMessage] = useState('');
-  const [wishSubmitted, setWishSubmitted] = useState(false);
+  
 
   const handleRsvpSubmit = (e) => {
     e.preventDefault();
@@ -235,24 +225,7 @@ function MainContent({
     }, 3000);
   };
 
-  const handleWishSubmit = (e) => {
-    e.preventDefault();
-    if (!wishName.trim() || !wishMessage.trim()) return;
-
-    const newWish = {
-      name: wishName.trim(),
-      text: wishMessage.trim()
-    };
-
-    setWishes((prev) => [newWish, ...prev]);
-    setWishSubmitted(true);
-
-    setTimeout(() => {
-      setWishSubmitted(false);
-      setWishName('');
-      setWishMessage('');
-    }, 2500);
-  };
+  
 
   return (
     <div className="max-w-4xl mx-auto bg-[#f5efe9] overflow-hidden relative z-10">
@@ -435,6 +408,12 @@ function BrideGroomSection() {
     </svg>
   );
 
+  const lineTransition = (delay) => ({
+    duration: 0.7,
+    delay,
+    ease: "easeOut"
+  });
+
   return (
     <section className="py-20 px-4 bg-[#f5efe9]">
       <div className="max-w-3xl mx-auto space-y-20">
@@ -443,7 +422,7 @@ function BrideGroomSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={lineTransition(0)}
             className="text-center mb-8 px-4"
           >
             <p className="text-[#7a5b5b] text-xl md:text-2xl leading-relaxed font-['Cormorant_Garamond'] italic">
@@ -459,7 +438,7 @@ function BrideGroomSection() {
             initial="hiddenRight"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={lineTransition(0.1)}
           >
             <div className="w-64 h-64 mx-auto mb-6 rounded-full overflow-hidden border-8 border-[#e2c7b8] shadow-xl">
               <img src={CONFIG.photos[3]} alt={CONFIG.groom.nickname} className="w-full h-full object-cover" />
@@ -471,7 +450,7 @@ function BrideGroomSection() {
             initial="hiddenRight"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            transition={lineTransition(0.2)}
             className="text-3xl mb-2 text-[#6b4f4f] font-['Cormorant_Garamond']"
           >
             {CONFIG.groom.fullName}
@@ -482,7 +461,7 @@ function BrideGroomSection() {
             initial="hiddenRight"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            transition={lineTransition(0.3)}
             className="text-[#8b7a6f] mb-2 font-[Inter]"
           >
             Putra dari:
@@ -493,7 +472,7 @@ function BrideGroomSection() {
             initial="hiddenRight"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+            transition={lineTransition(0.4)}
             className="text-[#7a5b5b] font-[Inter]"
           >
             {CONFIG.groom.father}
@@ -504,7 +483,7 @@ function BrideGroomSection() {
             initial="hiddenRight"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+            transition={lineTransition(0.5)}
             className="text-[#7a5b5b] mb-4 font-[Inter]"
           >
             {CONFIG.groom.mother}
@@ -515,7 +494,7 @@ function BrideGroomSection() {
             initial="hiddenRight"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            transition={lineTransition(0.6)}
             href={`https://instagram.com/${CONFIG.groom.instagram.replace('@', '')}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -532,7 +511,7 @@ function BrideGroomSection() {
             initial="hiddenLeft"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={lineTransition(0.1)}
           >
             <div className="w-64 h-64 mx-auto mb-6 rounded-full overflow-hidden border-8 border-[#e2c7b8] shadow-xl">
               <img src={CONFIG.photos[1]} alt={CONFIG.bride.nickname} className="w-full h-full object-cover" />
@@ -544,7 +523,7 @@ function BrideGroomSection() {
             initial="hiddenLeft"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            transition={lineTransition(0.2)}
             className="text-3xl mb-2 text-[#6b4f4f] font-['Cormorant_Garamond']"
           >
             {CONFIG.bride.fullName}
@@ -555,7 +534,7 @@ function BrideGroomSection() {
             initial="hiddenLeft"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            transition={lineTransition(0.3)}
             className="text-[#8b7a6f] mb-2 font-[Inter]"
           >
             Putri dari:
@@ -566,7 +545,7 @@ function BrideGroomSection() {
             initial="hiddenLeft"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+            transition={lineTransition(0.4)}
             className="text-[#7a5b5b] font-[Inter]"
           >
             {CONFIG.bride.father}
@@ -577,7 +556,7 @@ function BrideGroomSection() {
             initial="hiddenLeft"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+            transition={lineTransition(0.5)}
             className="text-[#7a5b5b] mb-4 font-[Inter]"
           >
             {CONFIG.bride.mother}
@@ -588,7 +567,7 @@ function BrideGroomSection() {
             initial="hiddenLeft"
             whileInView="show"
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            transition={lineTransition(0.6)}
             href={`https://instagram.com/${CONFIG.bride.instagram.replace('@', '')}`}
             target="_blank"
             rel="noopener noreferrer"
