@@ -78,11 +78,9 @@ const CONFIG = {
     "/images/2.jpeg",
     "/images/3.jpeg",
     "/images/4.jpeg",
-    
     "/images/9.jpeg",
     "/images/11.jpeg",
     "/images/12.jpeg",
-    
     "/images/14.jpeg"
   ],
   coverPhoto: "/images/1.jpeg",
