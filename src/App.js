@@ -202,9 +202,11 @@ function CoverPage({ openInvitation }) {
           Kepada Bapak/Ibu/Saudara/i
         </p>
 
-        <p className="font-semibold text-[#6b4f4f] mt-2 font-[Inter]">
-          {new URLSearchParams(window.location.search).get("to") || "Tamu Undangan"}
-        </p>
+        <p className="font-semibold text-[#6b4f4f] mt-2 font-[Inter] whitespace-pre-line">
+  {decodeURIComponent(
+    new URLSearchParams(window.location.search).get("to") || "Tamu Undangan"
+  )}
+</p>
 
         <button
           onClick={openInvitation}
