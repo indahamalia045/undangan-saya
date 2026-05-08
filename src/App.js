@@ -48,7 +48,28 @@ const CONFIG = {
       time: "10:00 WIB - Selesai",
       venue: "Rumah Mempelai Pria",
       address: "Gunung Hasahatan Kecamatan Padangsidimpuan Batunadua Kota Padangsidimpuan"
-    }
+    },
+    timeline: {
+  saturday: [
+    { time: "08.00 - 09.00", event: "Manaek Gondang" },
+    { time: "09.00 - 11.00", event: "Margalanggang" },
+    { time: "11.00 - 12.30", event: "Mangalo-alo bayo pangoli dohot boru nadioli" },
+    { time: "12.30 - 13.00", event: "Isoma" },
+    { time: "13.00 - 15.30", event: "Marosong-osong" },
+    { time: "15.30 - 18.30", event: "Mangalo-alo mora" },
+    { time: "18.30 - 20.00", event: "Isoma" },
+    { time: "20.00 - 23.00", event: "Maralok-alok" },
+    { time: "23.00 - 24.00", event: "Margalanggang" },
+  ],
+
+  sunday: [
+    { time: "00.01 - 05.30", event: "Margalanggang" },
+    { time: "05.30 - 08.00", event: "Isoma" },
+    { time: "08.00 - 14.30", event: "Margalanggang" },
+    { time: "14.30 - 16.00", event: "Patuaekkon" },
+    { time: "16.00 - 18.30", event: "Mangupa" },
+  ]
+}
   },
   mapsLink: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d249.2903563445872!2d99.29793375046012!3d1.4071923625971186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1sid!2sid!4v1777175845652!5m2!1sid!2sid",
   musicUrl: "/music/onango.mp3",
@@ -236,6 +257,9 @@ function MainContent({
       <RevealSection><LoveStorySection /></RevealSection>
       <RevealSection><CountdownSection /></RevealSection>
       <RevealSection><EventDetailsSection /></RevealSection>
+      <RevealSection>
+  <TimelineSection />
+</RevealSection>
       <RevealSection className="bg-[#f5efe9]">
         <GallerySection currentPhoto={currentPhoto} setCurrentPhoto={setCurrentPhoto} showGallery={showGallery} setShowGallery={setShowGallery} />
       </RevealSection>
@@ -753,6 +777,96 @@ function EventDetailsSection() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TimelineSection() {
+  return (
+    <section className="py-20 px-4 bg-[#fffaf6]">
+      <div className="max-w-5xl mx-auto">
+        <motion.h3
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-4xl md:text-5xl text-center mb-16 text-[#6b4f4f] font-['Great_Vibes'] leading-none drop-shadow-sm"
+        >
+          Rangkaian Acara
+        </motion.h3>
+
+        <div className="grid md:grid-cols-2 gap-8">
+
+          {/* SABTU */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="bg-white rounded-3xl shadow-xl p-8 border border-[#ead8cb]"
+          >
+            <h4 className="text-3xl text-[#6b4f4f] mb-8 text-center font-['Cormorant_Garamond']">
+              Sabtu, 30 Mei 2026
+            </h4>
+
+            <div className="space-y-4">
+              {CONFIG.wedding.timeline.saturday.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex gap-4 items-start border-b border-[#f0e5dc] pb-4"
+                >
+                  <div className="min-w-[110px]">
+                    <p className="text-[#6b4f4f] font-semibold text-sm md:text-base">
+                      {item.time}
+                    </p>
+                  </div>
+
+                  <div className="flex-1">
+                    <p className="text-[#7a5b5b] leading-relaxed font-[Inter]">
+                      {item.event}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* MINGGU */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="bg-white rounded-3xl shadow-xl p-8 border border-[#ead8cb]"
+          >
+            <h4 className="text-3xl text-[#6b4f4f] mb-8 text-center font-['Cormorant_Garamond']">
+              Minggu, 31 Mei 2026
+            </h4>
+
+            <div className="space-y-4">
+              {CONFIG.wedding.timeline.sunday.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex gap-4 items-start border-b border-[#f0e5dc] pb-4"
+                >
+                  <div className="min-w-[110px]">
+                    <p className="text-[#6b4f4f] font-semibold text-sm md:text-base">
+                      {item.time}
+                    </p>
+                  </div>
+
+                  <div className="flex-1">
+                    <p className="text-[#7a5b5b] leading-relaxed font-[Inter]">
+                      {item.event}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
