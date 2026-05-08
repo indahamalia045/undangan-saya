@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MailOpen } from 'lucide-react';
 import {
-  Heart,
   Calendar,
   MapPin,
   Clock,
@@ -276,6 +275,9 @@ function MainContent({
           handleRsvpSubmit={handleRsvpSubmit}
         />
       </RevealSection>
+      <RevealSection>
+  <ClosingSection />
+</RevealSection>
       <FooterSection />
     </div>
   );
@@ -1123,18 +1125,108 @@ function RSVPSection({
   );
 }
 
+function ClosingSection() {
+  const [currentBg, setCurrentBg] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBg((prev) => (prev + 1) % CONFIG.photos.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="relative py-28 px-4 overflow-hidden">
+
+      {/* Background slideshow */}
+      <div className="absolute inset-0">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentBg}
+            src={CONFIG.photos[currentBg]}
+            alt="background"
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.8 }}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </AnimatePresence>
+
+        {/* Overlay gelap */}
+        <div className="absolute inset-0 bg-black/45" />
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/60" />
+      </div>
+
+      {/* Content */}
+      <div className="max-w-3xl mx-auto text-center relative z-10 text-white">
+
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+
+          {/* Terima kasih */}
+          <p className="text-white/90 italic text-lg md:text-xl mb-12 font-['Cormorant_Garamond']">
+            
+          </p>
+          {/* Terima kasih */}
+          <p className="text-white/90 italic text-lg md:text-xl mb-12 font-['Cormorant_Garamond']">
+            
+          </p>
+          {/* Terima kasih */}
+          <p className="text-white/90 italic text-lg md:text-xl mb-12 font-['Cormorant_Garamond']">
+            
+          </p>
+          
+          {/* Ucapan */}
+          <p className="text-white/80 text-base md:text-lg leading-relaxed font-[Inter] mb-6">
+            Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
+            Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu
+            pada hari bahagia kami.
+          </p>
+
+         
+
+          {/* Terima kasih */}
+          <p className="text-white/90 italic text-lg md:text-xl mb-12 font-['Cormorant_Garamond']">
+            Atas doa dan restunya kami ucapkan terima kasih.
+          </p>
+
+          {/* Nama */}
+          <h3 className="text-5xl md:text-7xl text-white font-['Great_Vibes'] leading-none mb-4 drop-shadow-2xl">
+            {CONFIG.groom.nickname} &amp; {CONFIG.bride.nickname}
+          </h3>
+
+          {/* Keluarga */}
+          <div className="mt-8 space-y-2">
+            <p className="text-white/70 text-sm uppercase tracking-[0.3em] font-[Inter]">
+              Kami yang berbahagia
+            </p>
+
+            <p className="text-white/90 text-lg font-['Cormorant_Garamond']">
+              Keluarga Besar Kedua Mempelai
+            </p>
+          </div>
+
+          {/* Line */}
+          <div className="w-32 h-[2px] bg-white/50 mx-auto mt-10 rounded-full"></div>
+
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 function FooterSection() {
   return (
     <footer className="py-12 bg-[#6b4f4f] text-white text-center px-4">
-      <Heart className="w-8 h-8 mx-auto mb-4 text-[#e2c7b8]" />
-      <p className="text-lg mb-2 font-['Cormorant_Garamond']">{CONFIG.groom.nickname} &amp; {CONFIG.bride.nickname}</p>
-      <p className="text-gray-300 font-[Inter]">
-        {new Date(CONFIG.wedding.date).toLocaleDateString('id-ID', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        })}
-      </p>
+      
       <p className="text-sm text-gray-400 mt-6 font-[Inter]">Made with ❤️ by IndahLia </p>
       
     </footer>
